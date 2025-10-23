@@ -7,14 +7,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy
-
-    run-on: self-hosted
+  deploy:
+    runs-on: self-hosted
 
     steps:
 
       - name: Checkout Code
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Asp x postgres deployment
         run: |
