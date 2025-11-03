@@ -8,21 +8,18 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted # This line is correct
+    runs-on: self-hosted
 
-    steps: # Correct indentation for steps start
-
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Asp x postgres deployment
         run: |
           echo "Navigating to project directory..."
-          # Removed the hardcoded home path (e.g., ~/wewe/asp-docker-compose-project)
-          # The runner is already in the project root's workspace.
+          # Navigate to the subdirectory containing docker-compose.yml
           cd AspNetCorePostgreSQLDockerApp/
 
-          # Removed git pull, as actions/checkout@v4 already fetches the latest code
-
           echo "Rebuilding and restarting Docker Compose stack..."
+          # Builds the images (if needed) and restarts the services, forcing recreation
           sudo docker compose up -d --build --force-recreate
