@@ -1,4 +1,4 @@
-name: Deploy to Raed-CT Server
+name: Deploy to GCP-ASP Server
 
 on:
   push:
