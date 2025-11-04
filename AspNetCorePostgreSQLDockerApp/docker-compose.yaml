@@ -12,7 +12,7 @@ services:
       - ConnectionStrings__DefaultConnection=Host=pg;Port=5432;Database=db;Username=db;Password=db
     
     # --- FINAL FIX: Wait 30 seconds and run the app DLL ---
-    command: ["/bin/bash", "-c", "sleep 30; dotnet AspNetCorePostgreSQLDockerApp.dll"]
+    command: ["/bin/bash", "-c", "sleep 60; dotnet AspNetCorePostgreSQLDockerApp.dll"]
     
     networks:
       - wewe0
