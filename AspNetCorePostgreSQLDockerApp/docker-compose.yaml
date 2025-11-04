@@ -8,10 +8,10 @@ services:
     depends_on:
       - "pg"
     environment:
-    
       - ConnectionStrings__DefaultConnection=Host=pg;Port=5432;Database=db;Username=db;Password=db
     
-    command: ["/bin/bash", "-c", "sleep 15; dotnet AspNetCorePostgreSQLDockerApp.dll"]
+
+    command: ["tail", "-f", "/dev/null"]
     
     networks:
       - wewe0
