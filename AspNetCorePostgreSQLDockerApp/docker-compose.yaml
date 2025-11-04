@@ -8,10 +8,11 @@ services:
     depends_on:
       - "pg"
     environment:
+      # Connection String: Host MUST be 'pg'
       - ConnectionStrings__DefaultConnection=Host=pg;Port=5432;Database=db;Username=db;Password=db
     
-
-    command: ["tail", "-f", "/dev/null"]
+    # --- FINAL FIX: Wait 30 seconds and run the app DLL ---
+    command: ["/bin/bash", "-c", "sleep 30; dotnet AspNetCorePostgreSQLDockerApp.dll"]
     
     networks:
       - wewe0
@@ -23,7 +24,9 @@ services:
       POSTGRES_PASSWORD: db
       POSTGRES_DB: db
     volumes:
-      - db_volume:/var/lib/postgresql/data
+      # CHANGED: Updated volume mount point to /var/lib/postgresql 
+      # to fix the "PostgreSQL 18+" image incompatibility error.
+      - db_volume:/var/lib/postgresql
     restart: unless-stopped
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d postgres" ]
